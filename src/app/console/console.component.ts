@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CipherService } from '../services/cipher.service';
 import { HttpUrlEncodingCodec } from '@angular/common/http';
+import { WebShareService } from 'ng-web-share';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-console',
@@ -14,7 +16,8 @@ export class ConsoleComponent implements OnInit {
   encryptMessage: string = '';
 
   constructor(private fb: FormBuilder,
-              private cipherService: CipherService) {
+              private cipherService: CipherService,
+              private webShareService: WebShareService) {
   }
 
   ngOnInit(): void {
@@ -29,13 +32,30 @@ export class ConsoleComponent implements OnInit {
   }
 
   sendGift() {
-    console.log('Form: ', this.form.value);
-    const encrypt = this.cipherService.encryptJson(this.form.value);
-    console.log('Encrypt: ', encrypt)
-    console.log('Decrypt: ', this.cipherService.decryptJson(encrypt))
+    const encrypt: string = this.cipherService.encryptJson(this.form.value);
+    const codec: HttpUrlEncodingCodec = new HttpUrlEncodingCodec();
+    const encodedData: string = codec.encodeValue(encrypt);
+    const link: string = `${window.location.origin}${environment.production ? window.location.pathname : '/'}?data=${encodedData}`;
+    console.log('Link', link);
+    this.share(link);
+  }
 
-    const codec = new HttpUrlEncodingCodec();
-    console.log('Codec: ', codec.encodeValue(encrypt));
+  share(link: string) {
+
+    if (!this.webShareService.canShare()) {
+      alert(`This service/api is not supported in your Browser`);
+      return;
+    }
+
+    this.webShareService.share({
+      title: 'Sorpresa Amarilla',
+      text: 'Tienes una sorpresa',
+      url: link
+    }).then((response) => {
+      console.log(response);
+    }).catch((error) => {
+      console.log(error);
+    });
   }
 
 }
