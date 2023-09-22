@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CipherService } from '../services/cipher.service';
 import { HttpUrlEncodingCodec } from '@angular/common/http';
-import { environment } from '../../environments/environment';
 import { IMessageHeader } from '../interfaces/message.interface';
 
 @Component({
@@ -41,7 +40,6 @@ export class ConsoleComponent implements OnInit {
     const encrypt: string = this.cipherService.encryptJson(this.surpriseForm.value);
     const codec: HttpUrlEncodingCodec = new HttpUrlEncodingCodec();
     const link: string = `${window.location.origin}/?data=${codec.encodeValue(encrypt)}`;
-    console.log('Link', link);
     this.share(link);
   }
 
