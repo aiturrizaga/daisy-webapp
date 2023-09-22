@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CipherService } from '../services/cipher.service';
 import { HttpUrlEncodingCodec } from '@angular/common/http';
-import { WebShareService } from 'ng-web-share';
 import { environment } from '../../environments/environment';
-import { IMessageHeader } from '../home/home.component';
+import { IMessageHeader } from '../interfaces/message.interface';
 
 @Component({
   selector: 'app-console',
@@ -20,8 +19,7 @@ export class ConsoleComponent implements OnInit {
   }
 
   constructor(private fb: FormBuilder,
-              private cipherService: CipherService,
-              private webShareService: WebShareService) {
+              private cipherService: CipherService) {
   }
 
   ngOnInit(): void {
@@ -35,7 +33,7 @@ export class ConsoleComponent implements OnInit {
     });
   }
 
-  sendGift() {
+  handleSubmit() {
     if (this.surpriseForm.invalid) {
       this.surpriseForm.markAllAsTouched();
       return;
@@ -48,22 +46,18 @@ export class ConsoleComponent implements OnInit {
     this.share(link);
   }
 
-  share(link: string) {
+  share(link: string): void {
+    const navigator: Navigator = window.navigator as Navigator;
 
-    if (!this.webShareService.canShare()) {
-      alert(`This service/api is not supported in your Browser`);
-      return;
+    if (navigator.share) {
+      navigator.share({
+        title: 'Sorpresa Amarilla',
+        text: 'Entra a ver tu sorpresa',
+        url: link
+      }).then();
+    } else {
+      alert('Se copio el link en el portapapeles');
     }
-
-    this.webShareService.share({
-      title: 'Sorpresa Amarilla',
-      text: 'Tienes una sorpresa',
-      url: link
-    }).then((response) => {
-      console.log(response);
-    }).catch((error) => {
-      console.log(error);
-    });
   }
 
   get f(): { [key: string]: AbstractControl } {

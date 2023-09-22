@@ -2,11 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CipherService } from '../services/cipher.service';
 import { HttpUrlEncodingCodec } from '@angular/common/http';
-
-export interface IMessageHeader {
-  title: string,
-  subtitle: string
-}
+import { IMessageHeader } from '../interfaces/message.interface';
 
 @Component({
   selector: 'app-home',
