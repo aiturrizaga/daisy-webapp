@@ -40,8 +40,7 @@ export class ConsoleComponent implements OnInit {
     }
     const encrypt: string = this.cipherService.encryptJson(this.surpriseForm.value);
     const codec: HttpUrlEncodingCodec = new HttpUrlEncodingCodec();
-    const encodedData: string = codec.encodeValue(encrypt);
-    const link: string = `${window.location.origin}${environment.production ? window.location.pathname : '/'}?data=${encodedData}`;
+    const link: string = `${window.location.origin}/?data=${codec.encodeValue(encrypt)}`;
     console.log('Link', link);
     this.share(link);
   }
