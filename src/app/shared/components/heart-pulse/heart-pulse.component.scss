@@ -1,0 +1,12 @@
+.heart-container {
+  animation: beat 3500ms infinite;
+}
+
+@keyframes beat {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.4);
+  }
+}

@@ -7,13 +7,17 @@ import { HomeComponent } from './home/home.component';
 import { FlowerComponent } from './flower/flower.component';
 import { ConsoleComponent } from './console/console.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HeartPulseComponent } from './shared/components/heart-pulse/heart-pulse.component';
+import { MessageHeaderComponent } from './shared/components/message-header/message-header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     FlowerComponent,
-    ConsoleComponent
+    ConsoleComponent,
+    HeartPulseComponent,
+    MessageHeaderComponent
   ],
   imports: [
     BrowserModule,

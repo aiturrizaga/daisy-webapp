@@ -4,6 +4,7 @@ import { CipherService } from '../services/cipher.service';
 import { HttpUrlEncodingCodec } from '@angular/common/http';
 import { WebShareService } from 'ng-web-share';
 import { environment } from '../../environments/environment';
+import { IMessageHeader } from '../home/home.component';
 
 @Component({
   selector: 'app-console',
@@ -12,8 +13,11 @@ import { environment } from '../../environments/environment';
 })
 export class ConsoleComponent implements OnInit {
 
-  form: FormGroup = new FormGroup<any>('');
-  encryptMessage: string = '';
+  surpriseForm: FormGroup = new FormGroup<any>('');
+  message: IMessageHeader = {
+    title: 'Para ti',
+    subtitle: 'Mi Amor'
+  }
 
   constructor(private fb: FormBuilder,
               private cipherService: CipherService,
@@ -21,18 +25,21 @@ export class ConsoleComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.initForm();
+    this.initSurpriseForm();
   }
 
-  initForm() {
-    this.form = this.fb.group({
-      title: ['', [Validators.required, Validators.max(50)]],
-      subtitle: ['', [Validators.required, Validators.max(30)]]
+  initSurpriseForm() {
+    this.surpriseForm = this.fb.group({
+      title: ['', [Validators.required, Validators.maxLength(50)]],
+      subtitle: ['', [Validators.required, Validators.maxLength(30)]]
     });
   }
 
   sendGift() {
-    const encrypt: string = this.cipherService.encryptJson(this.form.value);
+    if (this.surpriseForm.invalid) {
+      return;
+    }
+    const encrypt: string = this.cipherService.encryptJson(this.surpriseForm.value);
     const codec: HttpUrlEncodingCodec = new HttpUrlEncodingCodec();
     const encodedData: string = codec.encodeValue(encrypt);
     const link: string = `${window.location.origin}${environment.production ? window.location.pathname : '/'}?data=${encodedData}`;

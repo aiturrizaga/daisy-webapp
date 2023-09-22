@@ -1,23 +1,17 @@
-<div class="back">
-  <div class="z-20 bg-white">
-    <div class="max-w-screen-xl py-4 px-2 mx-auto lg:px-8">
-      <h1 class="text-center">
-        <span class="text-xl">{{start.title}}</span>
-        <br>
-        <span class="text-4xl">{{start.subtitle}}</span>
-      </h1>
+<div class="back-pulse-container">
+  <div class="h-screen flex flex-col">
+    <app-message-header [title]="start.title" [subtitle]="start.subtitle"></app-message-header>
+    <div class="m-auto">
+      <app-heart-pulse color="#FFFD8C" size="15rem" (clickHeart)="goFlowerPage()"></app-heart-pulse>
     </div>
   </div>
-  <button type="button" (click)="goFlowerPage()">
-    <div class="heart"></div>
-  </button>
 </div>
 
 <div class="z-20 fixed bottom-0 left-5 right-5 mb-5 lg:mb-10">
   <div class="flex justify-center">
     <button type="button" (click)="goFlowerPage()"
             class="bg-violet-800 rounded-lg px-4 py-2 text-white transition hover:bg-violet-950">
-      <p class="font-bold text-xl">Toca el corazón</p>
+      <span class="font-bold text-xl">Toca el corazón</span>
     </button>
   </div>
 </div>

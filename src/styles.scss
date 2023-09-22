@@ -23,3 +23,16 @@
 .form-input-control {
   @apply w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out;
 }
+
+.back-pulse-container {
+  background: #793FDF;
+  animation-name: back-div;
+  animation-duration: 3500ms;
+  animation-iteration-count: infinite;
+}
+
+@keyframes back-div {
+  50% {
+    background: #7091F5;
+  }
+}

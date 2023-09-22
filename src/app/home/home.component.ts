@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CipherService } from '../services/cipher.service';
 import { HttpUrlEncodingCodec } from '@angular/common/http';
 
-interface IHome {
+export interface IMessageHeader {
   title: string,
   subtitle: string
 }
@@ -15,7 +15,7 @@ interface IHome {
 })
 export class HomeComponent implements OnInit {
 
-  start: IHome = {
+  start: IMessageHeader = {
     title: 'Para ti',
     subtitle: 'Mi Amor'
   }
