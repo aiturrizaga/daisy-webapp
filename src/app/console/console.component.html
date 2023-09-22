@@ -31,16 +31,31 @@
       <div class="relative mb-4">
         <label for="title_txt" class="leading-7 text-sm text-gray-600">Mensaje lindo</label>
         <input #titleTxt formControlName="title" type="text" id="title_txt" name="title" autocomplete="off"
+               [ngClass]="{'form-input-control-error': f['title'].errors && (f['title'].touched || f['title'].dirty)}"
                class="form-input-control" maxlength="50" [placeholder]="message.title">
+        <div *ngIf="f['title'].errors && (f['title'].touched || f['title'].dirty)" class="invalid-feedback">
+          <div *ngIf="f['title'].hasError('required')" class="pl-1.5 text-sm text-red-500 font-medium">Este mensaje es requerido</div>
+        </div>
       </div>
       <div class="relative mb-4">
-        <label for="name_txt" class="leading-7 text-sm text-gray-600">Nombre de tu ser amado</label>
-        <input #subtitleTxt formControlName="subtitle" type="text" id="name_txt" name="name" autocomplete="off"
+        <label for="subtitle_txt" class="leading-7 text-sm text-gray-600">Nombre de tu ser amado</label>
+        <input #subtitleTxt formControlName="subtitle" type="text" id="subtitle_txt" name="name" autocomplete="off"
+               [ngClass]="{'form-input-control-error': f['subtitle'].errors && (f['subtitle'].touched || f['subtitle'].dirty)}"
                class="form-input-control" maxlength="30" [placeholder]="message.subtitle">
+        <div *ngIf="f['subtitle'].errors && (f['subtitle'].touched || f['subtitle'].dirty)" class="invalid-feedback">
+          <div *ngIf="f['subtitle'].hasError('required')" class="pl-1.5 text-sm text-red-500 font-medium">Este mensaje es requerido</div>
+        </div>
       </div>
-      <button type="submit"
-              class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
-        Compartir
+      <button type="submit" class="flex justify-center items-center gap-x-5 btn-violet text-lg">
+        <svg width="25" height="25" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor"
+             stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="18" cy="5" r="3"></circle>
+          <circle cx="6" cy="12" r="3"></circle>
+          <circle cx="18" cy="19" r="3"></circle>
+          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+          <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+        </svg>
+        <span>Compartir</span>
       </button>
     </form>
   </div>

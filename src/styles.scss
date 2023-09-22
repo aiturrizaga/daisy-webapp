@@ -21,7 +21,15 @@
 }
 
 .form-input-control {
-  @apply w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out;
+  @apply w-full bg-white rounded border border-gray-300 focus:border-violet-500 focus:ring-4 focus:ring-violet-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out;
+}
+
+.form-input-control-error {
+  @apply w-full bg-white rounded border border-red-300 focus:border-red-500 focus:ring-4 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out;
+}
+
+.btn-violet {
+  @apply bg-violet-800 rounded-lg px-4 py-2 text-white transition hover:bg-violet-950;
 }
 
 .back-pulse-container {

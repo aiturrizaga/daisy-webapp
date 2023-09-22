@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CipherService } from '../services/cipher.service';
 import { HttpUrlEncodingCodec } from '@angular/common/http';
 import { WebShareService } from 'ng-web-share';
@@ -63,6 +63,10 @@ export class ConsoleComponent implements OnInit {
     }).catch((error) => {
       console.log(error);
     });
+  }
+
+  get f(): { [key: string]: AbstractControl } {
+    return this.surpriseForm.controls;
   }
 
 }
