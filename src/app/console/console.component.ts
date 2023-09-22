@@ -37,6 +37,7 @@ export class ConsoleComponent implements OnInit {
 
   sendGift() {
     if (this.surpriseForm.invalid) {
+      this.surpriseForm.markAllAsTouched();
       return;
     }
     const encrypt: string = this.cipherService.encryptJson(this.surpriseForm.value);
