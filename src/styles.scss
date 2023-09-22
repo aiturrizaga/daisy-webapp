@@ -11,6 +11,10 @@
   --petal-color: radial-gradient(circle, #ff5e00, #ffbb00);
 }
 
+html, body {
+  scroll-behavior: smooth;
+}
+
 .body-daisy-flower {
   background-image: var(--color-bg);
   min-height: 100vh;

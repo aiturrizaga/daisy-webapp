@@ -7,7 +7,7 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 })
 export class FlowerComponent implements AfterViewInit {
 
-  audioPath = 'assets/sounds/flores-amarillas-song_short.mp3';
+  audioPath: string = 'assets/sounds/flores-amarillas-song_short.mp3';
   // @ts-ignore
   @ViewChild('audio') audio: ElementRef;
   // @ts-ignore
