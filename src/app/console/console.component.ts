@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { CipherService } from '../services/cipher.service';
 import { HttpUrlEncodingCodec } from '@angular/common/http';
 import { IMessageHeader } from '../interfaces/message.interface';
+import { Clipboard } from '@angular/cdk/clipboard';
 
 @Component({
   selector: 'app-console',
@@ -18,6 +19,7 @@ export class ConsoleComponent implements OnInit {
   }
 
   constructor(private fb: FormBuilder,
+              private clipboard: Clipboard,
               private cipherService: CipherService) {
   }
 
@@ -37,13 +39,22 @@ export class ConsoleComponent implements OnInit {
       this.surpriseForm.markAllAsTouched();
       return;
     }
-    const encrypt: string = this.cipherService.encryptJson(this.surpriseForm.value);
-    const codec: HttpUrlEncodingCodec = new HttpUrlEncodingCodec();
-    const link: string = `${window.location.origin}/?data=${codec.encodeValue(encrypt)}`;
-    this.share(link);
+
+    this.share(this.getCustomLink());
   }
 
-  share(link: string): void {
+  handleCopyButton() {
+    this.copyToClipboard(this.getCustomLink());
+    alert('Se copio el link en el portapapeles');
+  }
+
+  getCustomLink(): string {
+    const encrypt: string = this.cipherService.encryptJson(this.surpriseForm.value);
+    const codec: HttpUrlEncodingCodec = new HttpUrlEncodingCodec();
+    return `${window.location.origin}/?data=${codec.encodeValue(encrypt)}`;
+  }
+
+  private share(link: string): void {
     const navigator: Navigator = window.navigator as Navigator;
 
     if (navigator.share) {
@@ -53,8 +64,13 @@ export class ConsoleComponent implements OnInit {
         url: link
       }).then();
     } else {
+      this.copyToClipboard(link);
       alert('Se copio el link en el portapapeles');
     }
+  }
+
+  private copyToClipboard(value: string): void {
+    this.clipboard.copy(value);
   }
 
   get f(): { [key: string]: AbstractControl } {

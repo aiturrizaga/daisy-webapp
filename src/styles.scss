@@ -32,6 +32,10 @@
   @apply bg-violet-800 rounded-lg px-4 py-2 text-white transition hover:bg-violet-950;
 }
 
+.btn-copy {
+  @apply bg-gray-700 rounded-lg px-4 py-2 text-white transition hover:bg-gray-950 disabled:bg-gray-400 disabled:cursor-not-allowed;
+}
+
 .back-pulse-container {
   background: #793FDF;
   animation-name: back-div;

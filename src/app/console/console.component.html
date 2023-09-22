@@ -34,7 +34,9 @@
                [ngClass]="{'form-input-control-error': f['title'].errors && (f['title'].touched || f['title'].dirty)}"
                class="form-input-control" maxlength="50" [placeholder]="message.title">
         <div *ngIf="f['title'].errors && (f['title'].touched || f['title'].dirty)" class="invalid-feedback">
-          <div *ngIf="f['title'].hasError('required')" class="pl-1.5 text-sm text-red-500 font-medium">Este mensaje es requerido</div>
+          <div *ngIf="f['title'].hasError('required')" class="pl-1.5 text-sm text-red-500 font-medium">Este mensaje es
+            requerido
+          </div>
         </div>
       </div>
       <div class="relative mb-4">
@@ -43,20 +45,37 @@
                [ngClass]="{'form-input-control-error': f['subtitle'].errors && (f['subtitle'].touched || f['subtitle'].dirty)}"
                class="form-input-control" maxlength="30" [placeholder]="message.subtitle">
         <div *ngIf="f['subtitle'].errors && (f['subtitle'].touched || f['subtitle'].dirty)" class="invalid-feedback">
-          <div *ngIf="f['subtitle'].hasError('required')" class="pl-1.5 text-sm text-red-500 font-medium">Este mensaje es requerido</div>
+          <div *ngIf="f['subtitle'].hasError('required')" class="pl-1.5 text-sm text-red-500 font-medium">Este mensaje
+            es requerido
+          </div>
         </div>
       </div>
-      <button type="submit" class="flex justify-center items-center gap-x-5 btn-violet text-lg">
-        <svg width="25" height="25" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor"
-             stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="18" cy="5" r="3"></circle>
-          <circle cx="6" cy="12" r="3"></circle>
-          <circle cx="18" cy="19" r="3"></circle>
-          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-          <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-        </svg>
-        <span>Compartir</span>
-      </button>
+      <div class="flex flex-col sm:flex-row justify-center items-center w-full gap-4">
+        <button type="button" title="Copiar enlace"
+                class="flex order-2 sm:order-1 justify-center items-center gap-x-5 btn-copy text-lg w-full sm:w-1/3"
+                (click)="handleCopyButton()"
+                [disabled]="surpriseForm.invalid">
+          <svg width="25" height="25" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <span>Copiar</span>
+        </button>
+
+        <button type="submit" title="Compartir enlace"
+                class="flex order-1 sm:order-2 justify-center items-center gap-x-5 btn-violet text-lg w-full sm:w-3/4">
+          <svg width="25" height="25" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor"
+               stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+          </svg>
+          <span>Compartir</span>
+        </button>
+      </div>
     </form>
   </div>
 

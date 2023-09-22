@@ -9,6 +9,7 @@ import { ConsoleComponent } from './console/console.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HeartPulseComponent } from './shared/components/heart-pulse/heart-pulse.component';
 import { MessageHeaderComponent } from './shared/components/message-header/message-header.component';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { MessageHeaderComponent } from './shared/components/message-header/messa
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ClipboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
