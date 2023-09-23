@@ -9,5 +9,21 @@
 </head>
 <body>
   <app-root></app-root>
+
+  <script>
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 30) {
+        const fhb = document.getElementById('floating_heart_button');
+        if (fhb) {
+          fhb.style.display = 'none';
+        }
+      } else {
+        const fhb = document.getElementById('floating_heart_button');
+        if (fhb) {
+          fhb.style.display = 'block';
+        }
+      }
+    });
+  </script>
 </body>
 </html>
