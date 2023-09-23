@@ -1,8 +1,16 @@
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 md:pt-10">
-  <h1 class="font-bold text-4xl">Sorpresa Amarilla</h1>
-  <h3 class="font-normal text-lg text-gray-700">Crea un mensaje personalizado para enviarselo a tu persona favorita</h3>
+<div class="bg-gray-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
+    <div class="flex flex-col gap-2">
+      <h1 class="font-bold text-3xl sm:text-4xl">Sorpresa Amarilla</h1>
+      <h3 class="font-normal sm:text-lg text-gray-700">
+        Crea un mensaje personalizado para enviarselo a tu persona favorita
+      </h3>
+    </div>
+  </div>
+</div>
 
-  <div class="flex flex-col md:flex-row gap-2 md:gap-10 py-11 md:py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-14">
+  <div class="flex flex-col md:flex-row gap-2 md:gap-10">
     <div class="back-pulse-container lg:w-2/3 md:w-1/2 rounded-lg overflow-hidden border-2">
       <div class="container">
         <app-message-header [title]="titleTxt.value ? titleTxt.value : message.title"
